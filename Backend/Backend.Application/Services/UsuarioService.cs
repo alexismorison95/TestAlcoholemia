@@ -1,4 +1,5 @@
-﻿using Backend.Application.DTOs.Usuarios;
+﻿using AutoMapper;
+using Backend.Application.DTOs.Usuarios;
 using Backend.Application.Interfaces;
 using Backend.Core.Entities;
 using Backend.Core.Repositories;
@@ -12,10 +13,12 @@ namespace Backend.Application.Services
 {
     public class UsuarioService : IUsuarioService
     {
+        private readonly IMapper iMapper;
         private readonly IUsuarioRepository iUsuarioRepository;
 
-        public UsuarioService(IUsuarioRepository pUsuarioRepository)
+        public UsuarioService(IMapper pMapper, IUsuarioRepository pUsuarioRepository)
         {
+            iMapper = pMapper;
             iUsuarioRepository = pUsuarioRepository;
         }
 
@@ -42,14 +45,7 @@ namespace Backend.Application.Services
 
         public async Task<Usuario> InsertUsuario(UsuarioDTO pUsuario)
         {
-            Usuario mUsuario = await iUsuarioRepository.AddAsync(new Usuario
-            {
-                Nombreusuario = pUsuario.Nombreusuario,
-                Contrasenia = pUsuario.Contrasenia,
-                Activo=pUsuario.Activo,
-                Nombrereal = pUsuario.Nombrereal,
-                Tipousuarioid = pUsuario.Tipousuarioid
-            });
+            Usuario mUsuario = await iUsuarioRepository.AddAsync(iMapper.Map<Usuario>(pUsuario));
 
             return mUsuario;
         }

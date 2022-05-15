@@ -21,6 +21,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<TallerContext>(options => options.UseNpgsql(connectionString));
 
 //automapper
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 //repo generico
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
