@@ -19,14 +19,14 @@ namespace Backend.Application.Services
             iUsuarioRepository = pUsuarioRepository;
         }
 
-        public Task DeleteUsusario(Usuario pUsuario)
+        public Task DeleteUsuario(Usuario pUsuario)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<UsuarioDTO>> GetUsers()
+        public async Task<IEnumerable<UsuarioDTO>> GetUsuarios()
         {
-            IEnumerable<Usuario> mUsuarioList = await iUsuarioRepository.GetAllAsync();
+            IEnumerable<Usuario> mUsuarioList = await iUsuarioRepository.GetAllUsuarioWithTipousuario();
 
             IEnumerable<UsuarioDTO> mResult = mUsuarioList.Select(x => new UsuarioDTO
             {
@@ -40,12 +40,12 @@ namespace Backend.Application.Services
             return mResult;
         }
 
-        public Task InsertUsusario(Usuario pUsuario)
+        public Task InsertUsuario(Usuario pUsuario)
         {
             throw new NotImplementedException();
         }
 
-        public Task UpdateUsusario(Usuario pUsuario)
+        public Task UpdateUsuario(Usuario pUsuario)
         {
             throw new NotImplementedException();
         }

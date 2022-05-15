@@ -17,7 +17,7 @@ namespace Backend.Infrastructure.Repositories
         {
         }
 
-        new public async Task<IEnumerable<Usuario>> GetAllAsync()
+        public async Task<IEnumerable<Usuario>> GetAllUsuarioWithTipousuario()
         {
             return await _tallerContext.Usuarios.Include(x => x.Tipousuario).ToListAsync();
         }

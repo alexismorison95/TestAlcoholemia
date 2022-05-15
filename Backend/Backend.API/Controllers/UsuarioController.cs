@@ -1,4 +1,5 @@
-﻿using Backend.Application.Interfaces;
+﻿using Backend.Application.DTOs.Usuarios;
+using Backend.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.API.Controllers
@@ -17,7 +18,7 @@ namespace Backend.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetUsuarios()
         {
-            var mUsuarioList = await iUsuarioService.GetUsers();
+            IEnumerable<UsuarioDTO> mUsuarioList = await iUsuarioService.GetUsuarios();
 
             return Ok(mUsuarioList);
         }
