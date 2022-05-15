@@ -9,11 +9,13 @@ import { MaterialModule } from './shared/modules/material.module';
 
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { InicioComponent } from './components/inicio/inicio.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavBarComponent
+    NavBarComponent,
+    InicioComponent
   ],
   imports: [
     BrowserModule,
