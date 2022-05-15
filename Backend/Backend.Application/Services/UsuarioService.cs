@@ -24,11 +24,11 @@ namespace Backend.Application.Services
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<UsuarioDTO>> GetUsuarios()
+        public async Task<IEnumerable<GetUsuarioDTO>> GetUsuarios()
         {
             IEnumerable<Usuario> mUsuarioList = await iUsuarioRepository.GetAllUsuarioWithTipousuario();
 
-            IEnumerable<UsuarioDTO> mResult = mUsuarioList.Select(x => new UsuarioDTO
+            IEnumerable<GetUsuarioDTO> mResult = mUsuarioList.Select(x => new GetUsuarioDTO
             {
                 Nombreusuario = x.Nombreusuario,
                 Contrasenia = x.Contrasenia,   
@@ -40,9 +40,18 @@ namespace Backend.Application.Services
             return mResult;
         }
 
-        public Task InsertUsuario(Usuario pUsuario)
+        public async Task<Usuario> InsertUsuario(UsuarioDTO pUsuario)
         {
-            throw new NotImplementedException();
+            Usuario mUsuario = await iUsuarioRepository.AddAsync(new Usuario
+            {
+                Nombreusuario = pUsuario.Nombreusuario,
+                Contrasenia = pUsuario.Contrasenia,
+                Activo=pUsuario.Activo,
+                Nombrereal = pUsuario.Nombrereal,
+                Tipousuarioid = pUsuario.Tipousuarioid
+            });
+
+            return mUsuario;
         }
 
         public Task UpdateUsuario(Usuario pUsuario)

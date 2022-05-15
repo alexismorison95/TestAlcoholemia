@@ -1,5 +1,6 @@
 ﻿using Backend.Application.DTOs.Usuarios;
 using Backend.Application.Interfaces;
+using Backend.Core.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.API.Controllers
@@ -18,9 +19,17 @@ namespace Backend.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetUsuarios()
         {
-            IEnumerable<UsuarioDTO> mUsuarioList = await iUsuarioService.GetUsuarios();
+            IEnumerable<GetUsuarioDTO> mUsuarioList = await iUsuarioService.GetUsuarios();
 
             return Ok(mUsuarioList);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddUsuario([FromBody] UsuarioDTO pUsuario)
+        {
+            Usuario mUsuario = await iUsuarioService.InsertUsuario(pUsuario);
+
+            return Ok(mUsuario);
         }
     }
 }
