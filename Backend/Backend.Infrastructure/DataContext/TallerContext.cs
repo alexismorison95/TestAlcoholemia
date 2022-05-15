@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using Backend.Core.Entities;
+﻿using Backend.Core.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Backend.Infrastructure.DataContext
 {

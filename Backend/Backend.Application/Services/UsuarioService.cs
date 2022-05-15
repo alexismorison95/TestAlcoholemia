@@ -3,11 +3,6 @@ using Backend.Application.DTOs.Usuarios;
 using Backend.Application.Interfaces;
 using Backend.Core.Entities;
 using Backend.Core.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Backend.Application.Services
 {

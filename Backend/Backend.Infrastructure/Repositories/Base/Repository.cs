@@ -1,11 +1,6 @@
 ﻿using Backend.Core.Repositories.Base;
 using Backend.Infrastructure.DataContext;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Backend.Infrastructure.Repositories.Base
 {
