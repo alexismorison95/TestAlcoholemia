@@ -31,16 +31,7 @@ namespace Backend.Application.Services
         {
             IEnumerable<Usuario> mUsuarioList = await iUsuarioRepository.GetAllUsuarioWithTipousuario();
 
-            IEnumerable<GetUsuarioDTO> mResult = mUsuarioList.Select(x => new GetUsuarioDTO
-            {
-                Nombreusuario = x.Nombreusuario,
-                Contrasenia = x.Contrasenia,   
-                Activo = x.Activo,
-                Nombrereal = x.Nombrereal,
-                Tipousuario = x.Tipousuario.Tipo
-            });
-
-            return mResult;
+            return iMapper.Map<IEnumerable<GetUsuarioDTO>>(mUsuarioList);
         }
 
         public async Task<Usuario> InsertUsuario(UsuarioDTO pUsuario)
