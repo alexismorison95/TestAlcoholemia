@@ -1,1 +1,9 @@
-<p>nav-bar works!</p>
+<mat-toolbar color="primary">
+    <span>App</span>
+    <span class="menu-spacer"></span>
+
+    <button mat-button [routerLink]="[ '/inicio' ]" routerLinkActive="active">Inicio</button>
+    <button mat-button [routerLink]="[ '/usuarios' ]" routerLinkActive="active">Usuarios</button>
+    
+    <span class="spacer"></span>
+</mat-toolbar>
