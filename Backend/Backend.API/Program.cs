@@ -7,9 +7,18 @@ using Backend.Infrastructure.Repositories;
 using Backend.Infrastructure.Repositories.Base;
 using Microsoft.EntityFrameworkCore;
 
+string cCORSOpenPolicy = "OpenCORSPolicy";
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: cCORSOpenPolicy,
+                      policy =>
+                      {
+                          policy.WithOrigins("*").AllowAnyHeader().AllowAnyMethod();
+                      });
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -42,6 +51,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(cCORSOpenPolicy);
 
 app.UseAuthorization();
 
