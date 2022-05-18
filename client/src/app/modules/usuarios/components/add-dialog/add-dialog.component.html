@@ -1,8 +1,8 @@
 <div>
-    <h1 mat-dialog-title>Agregar usuario</h1>
+    <h2 mat-dialog-title align="center">Agregar usuario</h2>
     <div mat-dialog-content>
 
-        <div style="display: flex;flex-direction: column; margin:1rem auto; max-width: 600px; padding: 1rem;">
+        <div style="display: flex;flex-direction: column;">
 
             <mat-form-field>
                 <input matInput type="text" placeholder="Nombre de usuario">
@@ -13,7 +13,7 @@
             </mat-form-field>
 
             <mat-form-field>
-                <input matInput type="text" placeholder="Contrasenia">
+                <input matInput type="text" placeholder="Contraseña">
             </mat-form-field>
 
             <mat-form-field>
@@ -22,8 +22,8 @@
 
         </div>
     </div>
-    <div mat-dialog-actions>
+    <div mat-dialog-actions align="end">
+        <button mat-button color="primary" [mat-dialog-close]="_data" cdkFocusInitial>Guardar</button>
         <button mat-button (click)="cancel()">Cancelar</button>
-        <button mat-button [mat-dialog-close]="_data" cdkFocusInitial>Guardar</button>
     </div>
 </div>

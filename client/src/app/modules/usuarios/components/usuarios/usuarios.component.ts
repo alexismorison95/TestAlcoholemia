@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { DeleteDialogComponent } from "../delete-dialog/delete-dialog.component";
+import { AddDialogComponent } from "../add-dialog/add-dialog.component";
 
 import { UsuariosService } from '../../services/usuarios.service';
 
@@ -47,7 +48,19 @@ export class UsuariosComponent implements OnInit {
    */
   addUsuario(): void {
 
-    console.log("add");
+    const mAddDialog = this._dialog.open(
+      AddDialogComponent, 
+      { width: '400px' }
+    );
+
+    mAddDialog.afterClosed().subscribe(pUsuario => {
+
+      if (pUsuario !== undefined) {
+        
+        //TODO: agregar llamando al servicio
+        console.log(pUsuario);
+      }
+    });
   }
 
   /**
