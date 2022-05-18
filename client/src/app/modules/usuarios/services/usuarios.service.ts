@@ -13,8 +13,13 @@ export class UsuariosService {
 
   private readonly cGET_USUARIOS_URL = `${environment.apiUrl}/Usuario/GetUsuarios`;
 
+  
   constructor(private _http: HttpClient) { }
 
+  /**
+   * Obtiene la lista de usuarios desde la API
+   * @returns GetUsuarioDTO[]
+   */
   getUsuarios(): Observable<GetUsuarioDTO[]> {
 
     return this._http.get<GetUsuarioDTO[]>(this.cGET_USUARIOS_URL);

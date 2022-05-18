@@ -11,18 +11,22 @@ import { GetUsuarioDTO } from '../../interfaces/Usuarios';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit, AfterViewInit, OnChanges {
+
+  //inputs
   @Input() pUsuarios: GetUsuarioDTO[] = [];
 
+  //outputs
   @Output() addUsuarioEvent = new EventEmitter();
   @Output() editUsuarioEvent = new EventEmitter<GetUsuarioDTO>();
   @Output() deleteUsuarioEvent = new EventEmitter<string>();
 
+  //tabla
   displayedColumns: string[] = ['nombreusuario', 'activo', 'nombrereal', 'tipousuario', 'actions'];
   dataSource: MatTableDataSource<GetUsuarioDTO>;
-
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
+  
   constructor() { 
 
     this.dataSource = new MatTableDataSource(this.pUsuarios);
@@ -42,6 +46,10 @@ export class TableComponent implements OnInit, AfterViewInit, OnChanges {
   ngOnInit(): void {
   }
 
+  /**
+   * Aplica el filtro de la tabla a los datos
+   * @param event 
+   */
   applyFilter(event: Event): void {
 
     const filterValue = (event.target as HTMLInputElement).value;
@@ -52,16 +60,27 @@ export class TableComponent implements OnInit, AfterViewInit, OnChanges {
     }
   }
 
+  /**
+   * Genera el evento agregar usuario
+   */
   addUsuario(): void {
 
     this.addUsuarioEvent.emit();
   }
 
+  /**
+   * Genera el evento de editar usuario
+   * @param pRow usuario que se quiere editar
+   */
   editUsuario(pRow: GetUsuarioDTO): void {
     
     this.editUsuarioEvent.emit(pRow);
   }
 
+  /**
+   * Genera el evento de eliminar usuario
+   * @param pRow usuario que se quiere eliminar
+   */
   deleteUsuario(pRow: GetUsuarioDTO): void {
     
     this.deleteUsuarioEvent.emit(pRow.nombreusuario);
