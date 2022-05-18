@@ -8,12 +8,18 @@ import { PipesModule } from '../../shared/modules/pipes.module';
 
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { TableComponent } from './components/table/table.component';
+import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
+import { AddDialogComponent } from './components/add-dialog/add-dialog.component';
+import { EditDialogComponent } from './components/edit-dialog/edit-dialog.component';
 
 
 @NgModule({
   declarations: [
     UsuariosComponent,
-    TableComponent
+    TableComponent,
+    DeleteDialogComponent,
+    AddDialogComponent,
+    EditDialogComponent
   ],
   imports: [
     CommonModule,

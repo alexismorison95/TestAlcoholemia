@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { GetUsuarioDTO } from '../../interfaces/Usuarios';
+import { MatDialog } from '@angular/material/dialog';
+
+import { DeleteDialogComponent } from "../delete-dialog/delete-dialog.component";
 
 import { UsuariosService } from '../../services/usuarios.service';
+
+import { GetUsuarioDTO } from '../../interfaces/Usuarios';
+
 
 @Component({
   selector: 'app-usuarios',
@@ -17,7 +22,8 @@ export class UsuariosComponent implements OnInit {
 
 
   constructor(
-    private _usuariosService: UsuariosService
+    private _usuariosService: UsuariosService,
+    public _dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -59,6 +65,18 @@ export class UsuariosComponent implements OnInit {
    */
   deleteUsuario(pNombreusuario: string): void {
     
-    console.log("delete " + pNombreusuario);
+    const mDeleteDialog = this._dialog.open(
+      DeleteDialogComponent, 
+      { data: pNombreusuario }
+    );
+
+    mDeleteDialog.afterClosed().subscribe(pUsuario => {
+
+      if (pUsuario !== undefined) {
+        
+        //TODO: eliminar llamando al servicio
+        console.log(pUsuario);
+      }
+    });
   }
 }
