@@ -1,8 +1,8 @@
 export interface GetUsuarioDTO {
-    Nombreusuario: string;
-    Activo: boolean;
-    Nombrereal: string;
-    Contrasenia: string;
-    Tipousuarioid: number;
-    Tipousuario: string;
+    nombreusuario: string;
+    activo: boolean;
+    nombrereal: string;
+    contrasenia: string;
+    tipousuarioid: number;
+    tipousuario: string;
 }
