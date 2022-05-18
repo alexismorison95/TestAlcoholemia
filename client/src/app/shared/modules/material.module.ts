@@ -19,7 +19,6 @@ const cMaterialModules: any[] = [
 ];
 
 @NgModule({
-
     imports: [ cMaterialModules ],
     exports: [ cMaterialModules ]
 })
