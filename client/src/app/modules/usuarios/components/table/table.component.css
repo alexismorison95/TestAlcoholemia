@@ -19,3 +19,7 @@ th.mat-header-cell {
 td.mat-cell {
     text-align: center !important;
 }
+
+.mat-column-actions {
+    min-width: 13rem;
+}

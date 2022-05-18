@@ -13,7 +13,7 @@ import { GetUsuarioDTO } from '../../interfaces/Usuarios';
 export class TableComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() pUsuarios: GetUsuarioDTO[] = [];
 
-  displayedColumns: string[] = ['nombreusuario', 'activo', 'nombrereal', 'tipousuario'];
+  displayedColumns: string[] = ['nombreusuario', 'activo', 'nombrereal', 'tipousuario', 'actions'];
   dataSource: MatTableDataSource<GetUsuarioDTO>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

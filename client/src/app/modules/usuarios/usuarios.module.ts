@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { UsuariosRoutingModule } from './usuarios-routing.module';
 
 import { MaterialModule } from '../../shared/modules/material.module';
+import { PipesModule } from '../../shared/modules/pipes.module';
 
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { TableComponent } from './components/table/table.component';
@@ -17,7 +18,8 @@ import { TableComponent } from './components/table/table.component';
   imports: [
     CommonModule,
     UsuariosRoutingModule,
-    MaterialModule
+    MaterialModule,
+    PipesModule
   ]
 })
 export class UsuariosModule { }
