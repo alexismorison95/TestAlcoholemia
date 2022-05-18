@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { DeleteDialogComponent } from "../delete-dialog/delete-dialog.component";
 import { AddDialogComponent } from "../add-dialog/add-dialog.component";
+import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 
 import { UsuariosService } from '../../services/usuarios.service';
 
@@ -84,7 +85,23 @@ export class UsuariosComponent implements OnInit {
    */
   editUsuario(pUsuario: GetUsuarioDTO): void {
     
-    console.log("edit " + pUsuario.nombreusuario);
+    const mEditDialog = this._dialog.open(
+      EditDialogComponent, 
+      { width: '400px', data: {usuario: pUsuario, tipousuario: this.mTipousuarioList} }
+    );
+
+    //despues de cerrar el dialogo
+    mEditDialog.afterClosed().subscribe(pUsuario => {
+
+      //si cargo correctamente el form
+      if (pUsuario !== undefined) {
+        
+        this._usuariosService.editUsuario(pUsuario as UsuarioDTO).subscribe(() => {
+          
+          this.getUsuarios();
+        });
+      }
+    });
   }
 
   /**

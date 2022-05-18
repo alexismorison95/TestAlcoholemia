@@ -13,6 +13,7 @@ export class UsuariosService {
 
   private readonly cGET_USUARIOS_URL = `${environment.apiUrl}/Usuario/GetUsuarios`;
   private readonly cADD_USUARIO_URL = `${environment.apiUrl}/Usuario/InsertUsuario`;
+  private readonly cUPDATE_USUARIO_URL = `${environment.apiUrl}/Usuario/UpdateUsuario`;
   private readonly cDELETE_USUARIO_URL = `${environment.apiUrl}/Usuario/DeleteUsuario/`;
 
   
@@ -37,8 +38,14 @@ export class UsuariosService {
     return this._http.post<UsuarioDTO>(this.cADD_USUARIO_URL, pUsuario);
   }
 
-  editUsuario() {
-
+  /**
+   * Edita un usario desde la API
+   * @param pUsuario usuario a editar
+   * @returns UsuarioDTO
+   */
+  editUsuario(pUsuario: UsuarioDTO): Observable<UsuarioDTO> {
+    
+    return this._http.put<UsuarioDTO>(this.cUPDATE_USUARIO_URL, pUsuario);
   }
 
   /**
