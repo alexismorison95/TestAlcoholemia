@@ -26,12 +26,12 @@
 
         <ng-container matColumnDef="nombrereal">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre real </th>
-            <td mat-cell *matCellDef="let row"> {{ row.nombrereal }} </td>
+            <td mat-cell *matCellDef="let row"> {{ row.nombrereal | titlecase }} </td>
         </ng-container>
 
         <ng-container matColumnDef="tipousuario">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo de usuario </th>
-            <td mat-cell *matCellDef="let row"> {{ row.tipousuario }} </td>
+            <td mat-cell *matCellDef="let row"> {{ row.tipousuario | titlecase }} </td>
         </ng-container>
 
         <ng-container matColumnDef="actions">
