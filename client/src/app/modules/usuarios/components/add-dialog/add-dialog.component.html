@@ -16,7 +16,10 @@
                 </mat-form-field>
     
                 <mat-form-field>
-                    <input matInput type="text" placeholder="Tipo de usuario" formControlName="tipousuario">
+                    <mat-label>Tipo de usuario</mat-label>
+                    <mat-select formControlName="tipousuario">
+                        <mat-option [value]="tipousuario.id" *ngFor="let tipousuario of data">{{ tipousuario.tipo }}</mat-option>
+                    </mat-select>
                 </mat-form-field>
         </div>
     </form>

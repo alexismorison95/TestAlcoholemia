@@ -16,7 +16,7 @@ export class AddDialogComponent implements OnInit {
 
   constructor(
     public _dialogRef: MatDialogRef<AddDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: GetUsuarioDTO,
+    @Inject(MAT_DIALOG_DATA) public data: any[],
     private _formBuilder: FormBuilder
   ) { 
 
@@ -28,7 +28,7 @@ export class AddDialogComponent implements OnInit {
       nombreusuario: ['', [Validators.required, Validators.minLength(4)]],
       nombrereal: ['', [Validators.required, Validators.minLength(4)]],
       contrasenia: ['', [Validators.required, Validators.minLength(4)]],
-      tipousuario: ['', [Validators.required, Validators.minLength(4)]]
+      tipousuario: ['', [Validators.required]]
     });
   }
 

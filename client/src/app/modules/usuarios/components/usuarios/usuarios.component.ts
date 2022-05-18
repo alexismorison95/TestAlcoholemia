@@ -21,6 +21,16 @@ export class UsuariosComponent implements OnInit {
    */
   mUsuariosList: GetUsuarioDTO[] = [];
 
+  /**
+   * Lista de tipos de usuarios
+   * TODO: agregar interface y traer desde API
+   */
+  mTipousuarioList: any[] = [
+    { id: 1, tipo: 'administrador' },
+    { id: 2, tipo: 'administrativo' },
+    { id: 3, tipo: 'base' }
+  ];
+
 
   constructor(
     private _usuariosService: UsuariosService,
@@ -50,7 +60,7 @@ export class UsuariosComponent implements OnInit {
 
     const mAddDialog = this._dialog.open(
       AddDialogComponent, 
-      { width: '400px', data: {} } //TODO: estaria bueno pasarle los tipos de usuario
+      { width: '400px', data: this.mTipousuarioList }
     );
 
     mAddDialog.afterClosed().subscribe(pUsuario => {
