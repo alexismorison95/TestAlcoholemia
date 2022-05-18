@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GetUsuarioDTO } from '../../interfaces/Usuarios';
 
 import { UsuariosService } from '../../services/usuarios.service';
 
@@ -8,6 +9,8 @@ import { UsuariosService } from '../../services/usuarios.service';
   styleUrls: ['./usuarios.component.css']
 })
 export class UsuariosComponent implements OnInit {
+
+  mUsuariosList: GetUsuarioDTO[] = [];
 
   constructor(
     private _usuariosService: UsuariosService
@@ -22,7 +25,7 @@ export class UsuariosComponent implements OnInit {
 
     this._usuariosService.getUsuarios().subscribe(pResponse => {
 
-      console.log(pResponse);
+      this.mUsuariosList = pResponse;
     });
   }
 
