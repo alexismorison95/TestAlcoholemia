@@ -4,7 +4,7 @@
         <form [formGroup]="form">
         <div style="display: flex;flex-direction: column;">
                 <mat-form-field>
-                    <input matInput type="text" placeholder="Nombre de usuario" formControlName="nombreusuario">
+                    <input matInput type="text" placeholder="Nombre de usuario" formControlName="nombreusuario" [readonly]="true">
                 </mat-form-field>
 
                 <mat-form-field>
