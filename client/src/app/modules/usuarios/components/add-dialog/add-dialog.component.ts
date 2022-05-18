@@ -26,9 +26,10 @@ export class AddDialogComponent implements OnInit {
 
     this.form = this._formBuilder.group({
       nombreusuario: ['', [Validators.required, Validators.minLength(4)]],
+      activo: [true],
       nombrereal: ['', [Validators.required, Validators.minLength(4)]],
       contrasenia: ['', [Validators.required, Validators.minLength(4)]],
-      tipousuario: ['', [Validators.required]]
+      tipousuarioid: ['', [Validators.required]]
     });
   }
 

@@ -6,7 +6,7 @@ import { AddDialogComponent } from "../add-dialog/add-dialog.component";
 
 import { UsuariosService } from '../../services/usuarios.service';
 
-import { GetUsuarioDTO } from '../../interfaces/Usuarios';
+import { GetUsuarioDTO, UsuarioDTO } from '../../interfaces/Usuarios';
 import { Tipousuario } from '../../interfaces/Tipousuario';
 
 
@@ -64,12 +64,16 @@ export class UsuariosComponent implements OnInit {
       { width: '400px', data: this.mTipousuarioList }
     );
 
+    //despues de cerrar el dialogo
     mAddDialog.afterClosed().subscribe(pUsuario => {
 
+      //si cargo correctamente el form
       if (pUsuario !== undefined) {
         
-        //TODO: agregar llamando al servicio
-        console.log(pUsuario);
+        this._usuariosService.addUsuario(pUsuario as UsuarioDTO).subscribe(() => {
+          
+          this.getUsuarios();
+        });
       }
     });
   }
@@ -94,12 +98,16 @@ export class UsuariosComponent implements OnInit {
       { data: pNombreusuario }
     );
 
-    mDeleteDialog.afterClosed().subscribe(pUsuario => {
+    //despues de cerrar el dialogo
+    mDeleteDialog.afterClosed().subscribe(pDelete => {
 
-      if (pUsuario !== undefined) {
+      //si la opción fue eliminar
+      if (pDelete !== undefined) {
         
-        //TODO: eliminar llamando al servicio
-        console.log(pUsuario);
+        this._usuariosService.deleteUsuario(pNombreusuario).subscribe(() => {
+          
+          this.getUsuarios();
+        });
       }
     });
   }
