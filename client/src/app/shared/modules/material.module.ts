@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSortModule } from '@angular/material/sort';
 
 
 const cMaterialModules: any[] = [
@@ -19,7 +20,8 @@ const cMaterialModules: any[] = [
     MatInputModule,
     MatPaginatorModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSortModule
 ];
 
 @NgModule({
