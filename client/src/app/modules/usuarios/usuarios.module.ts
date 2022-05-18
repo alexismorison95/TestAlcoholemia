@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { UsuariosRoutingModule } from './usuarios-routing.module';
 
@@ -25,7 +26,8 @@ import { EditDialogComponent } from './components/edit-dialog/edit-dialog.compon
     CommonModule,
     UsuariosRoutingModule,
     MaterialModule,
-    PipesModule
+    PipesModule,
+    ReactiveFormsModule
   ]
 })
 export class UsuariosModule { }

@@ -50,7 +50,7 @@ export class UsuariosComponent implements OnInit {
 
     const mAddDialog = this._dialog.open(
       AddDialogComponent, 
-      { width: '400px' }
+      { width: '400px', data: {} } //TODO: estaria bueno pasarle los tipos de usuario
     );
 
     mAddDialog.afterClosed().subscribe(pUsuario => {

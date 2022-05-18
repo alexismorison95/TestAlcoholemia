@@ -1,29 +1,28 @@
 <div>
     <h2 mat-dialog-title align="center">Agregar usuario</h2>
     <div mat-dialog-content>
-
+        <form [formGroup]="form">
         <div style="display: flex;flex-direction: column;">
-
-            <mat-form-field>
-                <input matInput type="text" placeholder="Nombre de usuario">
-            </mat-form-field>
-
-            <mat-form-field>
-                <input matInput type="text" placeholder="Nombre real">
-            </mat-form-field>
-
-            <mat-form-field>
-                <input matInput type="text" placeholder="Contraseña">
-            </mat-form-field>
-
-            <mat-form-field>
-                <input matInput type="text" placeholder="Tipo de usuario">
-            </mat-form-field>
-
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Nombre de usuario" formControlName="nombreusuario" cdkFocusInitial>
+                </mat-form-field>
+    
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Nombre real" formControlName="nombrereal">
+                </mat-form-field>
+    
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Contraseña" formControlName="contrasenia">
+                </mat-form-field>
+    
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Tipo de usuario" formControlName="tipousuario">
+                </mat-form-field>
         </div>
+    </form>
     </div>
     <div mat-dialog-actions align="end">
-        <button mat-button color="primary" [mat-dialog-close]="_data" cdkFocusInitial>Guardar</button>
+        <button mat-button color="primary" [mat-dialog-close]="form.value" [disabled]="form.invalid">Guardar</button>
         <button mat-button (click)="cancel()">Cancelar</button>
     </div>
 </div>
