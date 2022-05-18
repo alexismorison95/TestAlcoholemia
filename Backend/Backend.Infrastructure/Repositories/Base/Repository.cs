@@ -1,6 +1,7 @@
 ﻿using Backend.Core.Repositories.Base;
 using Backend.Infrastructure.DataContext;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Backend.Infrastructure.Repositories.Base
 {
@@ -20,10 +21,12 @@ namespace Backend.Infrastructure.Repositories.Base
             return entity;
         }
 
-        public async Task DeleteAsync(T entity)
+        public async Task<T> DeleteAsync(T entity)
         {
-            _tallerContext.Set<T>().Remove(entity);
+            EntityEntry<T> mEntity = _tallerContext.Set<T>().Remove(entity);
             await _tallerContext.SaveChangesAsync();
+
+            return mEntity.Entity;
         }
 
         public async Task<IEnumerable<T>> GetAllAsync()
@@ -36,10 +39,12 @@ namespace Backend.Infrastructure.Repositories.Base
             return await _tallerContext.Set<T>().FindAsync(id);
         }
 
-        public async Task UpdateAsync(T entity)
+        public async Task<T> UpdateAsync(T entity)
         {
-            _tallerContext.Set<T>().Update(entity);
+            EntityEntry<T> mEntity = _tallerContext.Set<T>().Update(entity);
             await _tallerContext.SaveChangesAsync();
+
+            return mEntity.Entity;
         }
     }
 }
