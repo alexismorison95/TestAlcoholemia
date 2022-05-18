@@ -17,9 +17,18 @@ namespace Backend.Application.Services
             iUsuarioRepository = pUsuarioRepository;
         }
 
-        public Task DeleteUsuario(Usuario pUsuario)
+        public async Task<UsuarioDTO?> DeleteUsuario(string pNombreusuario)
         {
-            throw new NotImplementedException();
+            Usuario? mUsuario = await iUsuarioRepository.GetUsuarioByNombreUsuario(pNombreusuario);
+
+            if (mUsuario != null)
+            {
+                Usuario mDeletedUsuario = await iUsuarioRepository.DeleteAsync(mUsuario!);
+
+                return iMapper.Map<UsuarioDTO>(mDeletedUsuario);
+            }
+
+            return null;
         }
 
         public async Task<IEnumerable<GetUsuarioDTO>> GetUsuarios()
@@ -29,16 +38,18 @@ namespace Backend.Application.Services
             return iMapper.Map<IEnumerable<GetUsuarioDTO>>(mUsuarioList);
         }
 
-        public async Task<Usuario> InsertUsuario(UsuarioDTO pUsuario)
+        public async Task<UsuarioDTO> InsertUsuario(UsuarioDTO pUsuario)
         {
             Usuario mUsuario = await iUsuarioRepository.AddAsync(iMapper.Map<Usuario>(pUsuario));
 
-            return mUsuario;
+            return iMapper.Map<UsuarioDTO>(mUsuario);
         }
 
-        public Task UpdateUsuario(Usuario pUsuario)
+        public async Task<UsuarioDTO> UpdateUsuario(UsuarioDTO pUsuario)
         {
-            throw new NotImplementedException();
+            Usuario mUsuario = await iUsuarioRepository.UpdateAsync(iMapper.Map<Usuario>(pUsuario));
+
+            return iMapper.Map<UsuarioDTO>(mUsuario);
         }
     }
 }

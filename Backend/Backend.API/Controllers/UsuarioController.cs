@@ -1,6 +1,5 @@
 ﻿using Backend.Application.DTOs.Usuarios;
 using Backend.Application.Interfaces;
-using Backend.Core.Entities;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,11 +26,32 @@ namespace Backend.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddUsuario([FromBody] UsuarioDTO pUsuario)
+        public async Task<IActionResult> InsertUsuario([FromBody] UsuarioDTO pUsuario)
         {
-            Usuario mUsuario = await iUsuarioService.InsertUsuario(pUsuario);
+            UsuarioDTO mUsuario = await iUsuarioService.InsertUsuario(pUsuario);
 
             return Ok(mUsuario);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateUsuario([FromBody] UsuarioDTO pUsuario)
+        {
+            UsuarioDTO mUsuario = await iUsuarioService.UpdateUsuario(pUsuario);
+
+            return Ok(mUsuario);
+        }
+
+        [HttpDelete("{pNombreusuario}")]
+        public async Task<IActionResult> DeleteUsuario(string pNombreusuario)
+        {
+            UsuarioDTO? mUsuario = await iUsuarioService.DeleteUsuario(pNombreusuario);
+
+            if (mUsuario != null)
+            {
+                return Ok(mUsuario);
+            }
+            
+            return NotFound(new { Response = "Usuario no encontrado" });
         }
     }
 }
