@@ -7,7 +7,7 @@
         </mat-form-field>
     </div>
     <div class="col align-self-center col-md-auto">
-        <button mat-stroked-button color="primary">Agregar usuario</button>
+        <button mat-stroked-button color="primary" (click)="addUsuario()">Agregar usuario</button>
     </div>
 </div>
 
@@ -39,10 +39,10 @@
             <td mat-cell *matCellDef="let row">
                 <div class="row">
                     <div class="col">
-                        <button mat-stroked-button color="primary">Editar</button>
+                        <button mat-stroked-button color="primary" (click)="editUsuario(row)">Editar</button>
                     </div>
                     <div class="col">
-                        <button mat-stroked-button color="warn">Eliminar</button>
+                        <button mat-stroked-button color="warn" (click)="deleteUsuario(row)">Eliminar</button>
                     </div>
                 </div>
             </td>

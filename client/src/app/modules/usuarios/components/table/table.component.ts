@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -12,6 +12,10 @@ import { GetUsuarioDTO } from '../../interfaces/Usuarios';
 })
 export class TableComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() pUsuarios: GetUsuarioDTO[] = [];
+
+  @Output() addUsuarioEvent = new EventEmitter();
+  @Output() editUsuarioEvent = new EventEmitter<GetUsuarioDTO>();
+  @Output() deleteUsuarioEvent = new EventEmitter<string>();
 
   displayedColumns: string[] = ['nombreusuario', 'activo', 'nombrereal', 'tipousuario', 'actions'];
   dataSource: MatTableDataSource<GetUsuarioDTO>;
@@ -29,7 +33,7 @@ export class TableComponent implements OnInit, AfterViewInit, OnChanges {
     this.dataSource = new MatTableDataSource(this.pUsuarios);
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
 
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
@@ -38,7 +42,7 @@ export class TableComponent implements OnInit, AfterViewInit, OnChanges {
   ngOnInit(): void {
   }
 
-  applyFilter(event: Event) {
+  applyFilter(event: Event): void {
 
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -48,4 +52,18 @@ export class TableComponent implements OnInit, AfterViewInit, OnChanges {
     }
   }
 
+  addUsuario(): void {
+
+    this.addUsuarioEvent.emit();
+  }
+
+  editUsuario(pRow: GetUsuarioDTO): void {
+    
+    this.editUsuarioEvent.emit(pRow);
+  }
+
+  deleteUsuario(pRow: GetUsuarioDTO): void {
+    
+    this.deleteUsuarioEvent.emit(pRow.nombreusuario);
+  }
 }

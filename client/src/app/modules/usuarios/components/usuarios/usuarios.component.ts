@@ -29,4 +29,18 @@ export class UsuariosComponent implements OnInit {
     });
   }
 
+  addUsuario(): void {
+
+    console.log("add");
+  }
+
+  editUsuario(pUsuario: GetUsuarioDTO): void {
+    
+    console.log("edit " + pUsuario.nombreusuario);
+  }
+
+  deleteUsuario(pNombreusuario: string): void {
+    
+    console.log("delete " + pNombreusuario);
+  }
 }
