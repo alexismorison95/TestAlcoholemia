@@ -2,7 +2,7 @@ import { Component, Inject,OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { GetUsuarioDTO } from '../../interfaces/Usuarios';
+import { Tipousuario } from '../../interfaces/Tipousuario';
 
 @Component({
   selector: 'app-add-dialog',
@@ -16,7 +16,7 @@ export class AddDialogComponent implements OnInit {
 
   constructor(
     public _dialogRef: MatDialogRef<AddDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any[],
+    @Inject(MAT_DIALOG_DATA) public data: Tipousuario[],
     private _formBuilder: FormBuilder
   ) { 
 

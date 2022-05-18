@@ -7,6 +7,7 @@ import { AddDialogComponent } from "../add-dialog/add-dialog.component";
 import { UsuariosService } from '../../services/usuarios.service';
 
 import { GetUsuarioDTO } from '../../interfaces/Usuarios';
+import { Tipousuario } from '../../interfaces/Tipousuario';
 
 
 @Component({
@@ -25,7 +26,7 @@ export class UsuariosComponent implements OnInit {
    * Lista de tipos de usuarios
    * TODO: agregar interface y traer desde API
    */
-  mTipousuarioList: any[] = [
+  mTipousuarioList: Tipousuario[] = [
     { id: 1, tipo: 'administrador' },
     { id: 2, tipo: 'administrativo' },
     { id: 3, tipo: 'base' }
