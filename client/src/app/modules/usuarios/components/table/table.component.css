@@ -1,0 +1,21 @@
+table {
+    width: 100%;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+td,
+th {
+    width: 25%;
+}
+
+th.mat-header-cell {
+    text-align: center !important;
+}
+
+td.mat-cell {
+    text-align: center !important;
+}
