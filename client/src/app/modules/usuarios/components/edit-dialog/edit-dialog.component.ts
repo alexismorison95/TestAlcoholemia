@@ -21,7 +21,7 @@ export class EditDialogComponent implements OnInit {
   ngOnInit(): void {
 
     this.form = this._formBuilder.group({
-      nombreusuario: [this.data.usuario.nombreusuario, [Validators.required, Validators.minLength(4)]],
+      nombreusuario: [{value: this.data.usuario.nombreusuario, disabled: true}, [Validators.required, Validators.minLength(4)]],
       activo: [this.data.usuario.activo, [Validators.required]],
       nombrereal: [this.data.usuario.nombrereal, [Validators.required, Validators.minLength(4)]],
       contrasenia: [this.data.usuario.contrasenia, [Validators.required, Validators.minLength(4)]],
