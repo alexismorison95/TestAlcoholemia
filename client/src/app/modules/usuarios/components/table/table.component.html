@@ -1,7 +1,15 @@
-<mat-form-field appearance="standard">
-    <mat-label>Filtrar</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
-</mat-form-field>
+
+<div class="row">
+    <div class="col">
+        <mat-form-field appearance="standard">
+            <mat-label>Filtrar</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
+        </mat-form-field>
+    </div>
+    <div class="col align-self-center col-md-auto">
+        <button mat-stroked-button color="primary">Agregar usuario</button>
+    </div>
+</div>
 
 <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort>
