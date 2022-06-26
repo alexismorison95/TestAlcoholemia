@@ -8,15 +8,20 @@ namespace Backend.Application.Services
 {
     public class UsuarioService : IUsuarioService
     {
+        #region Propiedades
         private readonly IMapper iMapper;
         private readonly IUsuarioRepository iUsuarioRepository;
+        private readonly ITipousuarioRepository iTipoUsuarioRepository;
+        #endregion
 
-        public UsuarioService(IMapper pMapper, IUsuarioRepository pUsuarioRepository)
+        public UsuarioService(IMapper pMapper, IUsuarioRepository pUsuarioRepository, ITipousuarioRepository pTipoUsuarioRepository)
         {
             iMapper = pMapper;
             iUsuarioRepository = pUsuarioRepository;
+            iTipoUsuarioRepository = pTipoUsuarioRepository;
         }
 
+        #region Usuario
         public async Task<UsuarioDTO?> DeleteUsuario(string pNombreusuario)
         {
             Usuario? mUsuario = await iUsuarioRepository.GetUsuarioByNombreUsuario(pNombreusuario);
@@ -51,5 +56,36 @@ namespace Backend.Application.Services
 
             return iMapper.Map<UsuarioDTO>(mUsuario);
         }
+        #endregion
+
+        #region TipoUsuario
+        public async Task<IEnumerable<TipoUsuarioDTO>> GetTipoUsuario()
+        {
+            var mTipoUsuarioList = await iTipoUsuarioRepository.GetAllAsync();
+
+            return iMapper.Map<IEnumerable<TipoUsuarioDTO>>(mTipoUsuarioList);
+        }
+
+        public async Task<TipoUsuarioDTO> InsertTipoUsuario(TipoUsuarioDTO pTipoUsuario)
+        {
+            Tipousuario mTipoUsuario = await iTipoUsuarioRepository.AddAsync(iMapper.Map<Tipousuario>(pTipoUsuario));
+
+            return iMapper.Map<TipoUsuarioDTO>(mTipoUsuario);
+        }
+
+        public async Task<TipoUsuarioDTO?> DeleteTipoUsuario(int pId)
+        {
+            Tipousuario? mTipoUsuario = await iTipoUsuarioRepository.GetByIdAsync(pId);
+
+            if (mTipoUsuario != null)
+            {
+                await iTipoUsuarioRepository.DeleteAsync(mTipoUsuario);
+
+                return iMapper.Map<TipoUsuarioDTO>(mTipoUsuario);
+            }
+
+            return null;
+        }
+        #endregion
     }
 }

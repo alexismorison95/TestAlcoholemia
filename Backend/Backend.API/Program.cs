@@ -37,6 +37,7 @@ builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
 //repos
 builder.Services.AddTransient<IUsuarioRepository, UsuarioRepository>();
+builder.Services.AddTransient<ITipousuarioRepository, TipousuarioRepository>();
 
 //servicios
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();

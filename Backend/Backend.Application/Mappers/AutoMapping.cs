@@ -11,6 +11,7 @@ namespace Backend.Application.Mappers
             CreateMap<Usuario, UsuarioDTO>().ReverseMap();
             CreateMap<Usuario, UsuarioTipoUsuarioDTO>()
                 .ForMember(dest => dest.Tipousuario, opt => opt.MapFrom(src => src.Tipousuario!.Tipo));
+            CreateMap<Tipousuario, TipoUsuarioDTO>().ReverseMap();
         }
     }
 }

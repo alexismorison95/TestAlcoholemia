@@ -17,6 +17,7 @@ namespace Backend.API.Controllers
             iUsuarioService = pUsuarioService;
         }
 
+        #region Usuario
         [HttpGet]
         public async Task<IActionResult> GetUsuarios()
         {
@@ -69,5 +70,45 @@ namespace Backend.API.Controllers
             
             return NotFound(new { detail = "Usuario no encontrado" });
         }
+        #endregion
+
+        #region TipoUsuario
+        [HttpGet]
+        public async Task<IActionResult> GetTipoUsuarios()
+        {
+            IEnumerable<TipoUsuarioDTO> mTipoUsuarioList = await iUsuarioService.GetTipoUsuario();
+
+            return Ok(mTipoUsuarioList);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> InsertTipoUsuario([FromBody] TipoUsuarioDTO pTipoUsuario)
+        {
+            try
+            {
+                TipoUsuarioDTO mTipoUsuario = await iUsuarioService.InsertTipoUsuario(pTipoUsuario);
+
+                return Ok(mTipoUsuario);
+            }
+            catch (Exception)
+            {
+                return Problem("Error al insertar TipoUsuario", statusCode: 500);
+            }
+
+        }
+
+        [HttpDelete("{pId}")]
+        public async Task<IActionResult> DeleteTipoUsuario(int pId)
+        {
+            TipoUsuarioDTO? mTipoUsuario = await iUsuarioService.DeleteTipoUsuario(pId);
+
+            if (mTipoUsuario != null)
+            {
+                return Ok(mTipoUsuario);
+            }
+
+            return NotFound(new { detail = "TipoUsuario no encontrado" });
+        }
+        #endregion
     }
 }
