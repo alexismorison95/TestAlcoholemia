@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { GetUsuarioDTO, UsuarioDTO } from '../interfaces/Usuarios';
+import { Tipousuario } from '../interfaces/Tipousuario';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,8 @@ export class UsuariosService {
   private readonly cADD_USUARIO_URL = `${environment.apiUrl}/Usuario/InsertUsuario`;
   private readonly cUPDATE_USUARIO_URL = `${environment.apiUrl}/Usuario/UpdateUsuario`;
   private readonly cDELETE_USUARIO_URL = `${environment.apiUrl}/Usuario/DeleteUsuario/`;
+
+  private readonly cGET_TIPO_USUARIOS_URL = `${environment.apiUrl}/Usuario/GetTipoUsuarios`;
 
   
   constructor(private _http: HttpClient) { }
@@ -56,5 +59,15 @@ export class UsuariosService {
   deleteUsuario(pNombreusuario: string): Observable<UsuarioDTO> {
 
     return this._http.delete<UsuarioDTO>(this.cDELETE_USUARIO_URL + pNombreusuario);
+  }
+
+
+  /**
+   * Obtiene la lista de tipos de usuarios desde la API
+   * @returns Tipousuario[]
+   */
+  getTipoUsuario(): Observable<Tipousuario[]> {
+
+    return this._http.get<Tipousuario[]>(this.cGET_TIPO_USUARIOS_URL);
   }
 }

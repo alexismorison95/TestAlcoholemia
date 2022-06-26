@@ -1,10 +1,8 @@
-
 <div class="container">
     <usuarios-table 
-        [pUsuarios]="mUsuariosList"
+        [pUsuarios]="iUsuariosList"
         (addUsuarioEvent)="addUsuario()"
         (editUsuarioEvent)="editUsuario($event)"
         (deleteUsuarioEvent)="deleteUsuario($event)">
     </usuarios-table>
 </div>
-

@@ -1,37 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-
-import { DeleteDialogComponent } from "../delete-dialog/delete-dialog.component";
-import { AddDialogComponent } from "../add-dialog/add-dialog.component";
-import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
-
+import { AddDialogComponent } from '../../components/usuarios/add-dialog/add-dialog.component';
+import { DeleteDialogComponent } from '../../components/usuarios/delete-dialog/delete-dialog.component';
+import { EditDialogComponent } from '../../components/usuarios/edit-dialog/edit-dialog.component';
+import { Tipousuario } from '../../interfaces/Tipousuario';
+import { GetUsuarioDTO, UsuarioDTO } from '../../interfaces/Usuarios';
 import { UsuariosService } from '../../services/usuarios.service';
 
-import { GetUsuarioDTO, UsuarioDTO } from '../../interfaces/Usuarios';
-import { Tipousuario } from '../../interfaces/Tipousuario';
-
-
 @Component({
-  selector: 'app-usuarios',
-  templateUrl: './usuarios.component.html',
-  styleUrls: ['./usuarios.component.css']
+  selector: 'app-usuarios-tab',
+  templateUrl: './usuarios-tab.component.html',
+  styleUrls: ['./usuarios-tab.component.css']
 })
-export class UsuariosComponent implements OnInit {
+export class UsuariosTabComponent implements OnInit {
 
   /**
    * Lista de usuarios a mostrar en la tabla
    */
-  mUsuariosList: GetUsuarioDTO[] = [];
+  iUsuariosList: GetUsuarioDTO[] = [];
 
   /**
    * Lista de tipos de usuarios
-   * TODO: agregar interface y traer desde API
    */
-  mTipousuarioList: Tipousuario[] = [
-    { id: 1, tipo: 'administrador' },
-    { id: 2, tipo: 'administrativo' },
-    { id: 3, tipo: 'base' }
-  ];
+  iTipousuarioList: Tipousuario[] = [];
 
 
   constructor(
@@ -41,7 +32,17 @@ export class UsuariosComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.getTipoUsuarios();
+
     this.getUsuarios();
+  }
+
+  getTipoUsuarios(): void {
+
+    this._usuariosService.getTipoUsuario().subscribe(pResponse => {
+
+      this.iTipousuarioList = pResponse;
+    })
   }
 
   /**
@@ -51,7 +52,7 @@ export class UsuariosComponent implements OnInit {
 
     this._usuariosService.getUsuarios().subscribe(pResponse => {
 
-      this.mUsuariosList = pResponse;
+      this.iUsuariosList = pResponse;
     });
   }
 
@@ -61,8 +62,8 @@ export class UsuariosComponent implements OnInit {
   addUsuario(): void {
 
     const mAddDialog = this._dialog.open(
-      AddDialogComponent, 
-      { width: '400px', data: this.mTipousuarioList }
+      AddDialogComponent,
+      { width: '400px', data: this.iTipousuarioList }
     );
 
     //despues de cerrar el dialogo
@@ -70,9 +71,9 @@ export class UsuariosComponent implements OnInit {
 
       //si cargo correctamente el form
       if (pUsuario !== undefined) {
-        
+
         this._usuariosService.addUsuario(pUsuario as UsuarioDTO).subscribe(() => {
-          
+
           this.getUsuarios();
         });
       }
@@ -84,10 +85,10 @@ export class UsuariosComponent implements OnInit {
    * @param pUsuario usuario a editar
    */
   editUsuario(pUsuario: GetUsuarioDTO): void {
-    
+
     const mEditDialog = this._dialog.open(
-      EditDialogComponent, 
-      { width: '400px', data: {usuario: pUsuario, tipousuario: this.mTipousuarioList} }
+      EditDialogComponent,
+      { width: '400px', data: { usuario: pUsuario, tipousuario: this.iTipousuarioList } }
     );
 
     //despues de cerrar el dialogo
@@ -95,9 +96,9 @@ export class UsuariosComponent implements OnInit {
 
       //si cargo correctamente el form
       if (pUsuario !== undefined) {
-        
+
         this._usuariosService.editUsuario(pUsuario as UsuarioDTO).subscribe(() => {
-          
+
           this.getUsuarios();
         });
       }
@@ -109,9 +110,9 @@ export class UsuariosComponent implements OnInit {
    * @param pNombreusuario clave unica del usuario a liminar
    */
   deleteUsuario(pNombreusuario: string): void {
-    
+
     const mDeleteDialog = this._dialog.open(
-      DeleteDialogComponent, 
+      DeleteDialogComponent,
       { data: pNombreusuario }
     );
 
@@ -120,12 +121,13 @@ export class UsuariosComponent implements OnInit {
 
       //si la opción fue eliminar
       if (pDelete !== undefined) {
-        
+
         this._usuariosService.deleteUsuario(pNombreusuario).subscribe(() => {
-          
+
           this.getUsuarios();
         });
       }
     });
   }
+
 }

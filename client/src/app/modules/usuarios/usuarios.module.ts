@@ -7,11 +7,14 @@ import { UsuariosRoutingModule } from './usuarios-routing.module';
 import { MaterialModule } from '../../shared/modules/material.module';
 import { PipesModule } from '../../shared/modules/pipes.module';
 
-import { UsuariosComponent } from './components/usuarios/usuarios.component';
-import { TableComponent } from './components/table/table.component';
-import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
-import { AddDialogComponent } from './components/add-dialog/add-dialog.component';
-import { EditDialogComponent } from './components/edit-dialog/edit-dialog.component';
+import { UsuariosComponent } from './usuarios.component';
+import { TableComponent } from './components/usuarios/table/table.component';
+import { TableComponent as TipousuarioTableComponent } from './components/tipo-usuarios/table/table.component';
+import { DeleteDialogComponent } from './components/usuarios/delete-dialog/delete-dialog.component';
+import { AddDialogComponent } from './components/usuarios/add-dialog/add-dialog.component';
+import { EditDialogComponent } from './components/usuarios/edit-dialog/edit-dialog.component';
+import { UsuariosTabComponent } from './pages/usuarios-tab/usuarios-tab.component';
+import { TipoUsuariosTabComponent } from './pages/tipo-usuarios-tab/tipo-usuarios-tab.component';
 
 
 @NgModule({
@@ -20,7 +23,10 @@ import { EditDialogComponent } from './components/edit-dialog/edit-dialog.compon
     TableComponent,
     DeleteDialogComponent,
     AddDialogComponent,
-    EditDialogComponent
+    EditDialogComponent,
+    UsuariosTabComponent,
+    TipoUsuariosTabComponent,
+    TipousuarioTableComponent
   ],
   imports: [
     CommonModule,
