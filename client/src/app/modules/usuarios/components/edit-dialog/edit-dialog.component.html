@@ -7,7 +7,7 @@
                     <input matInput type="text" placeholder="Nombre de usuario" formControlName="nombreusuario" [readonly]="true">
                 </mat-form-field>
 
-                <mat-form-field>
+                <mat-form-field cdkFocusInitial>
                     <mat-label>Estado</mat-label>
                     <mat-select formControlName="activo">
                         <mat-option [value]="true">Activo</mat-option>
