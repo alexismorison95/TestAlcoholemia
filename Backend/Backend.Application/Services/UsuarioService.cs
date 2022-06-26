@@ -28,9 +28,9 @@ namespace Backend.Application.Services
 
             if (mUsuario != null)
             {
-                Usuario mDeletedUsuario = await iUsuarioRepository.DeleteAsync(mUsuario!);
+                await iUsuarioRepository.DeleteAsync(mUsuario!);
 
-                return iMapper.Map<UsuarioDTO>(mDeletedUsuario);
+                return iMapper.Map<UsuarioDTO>(mUsuario);
             }
 
             return null;

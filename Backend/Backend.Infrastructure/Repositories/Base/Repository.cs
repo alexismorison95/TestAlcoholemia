@@ -21,12 +21,10 @@ namespace Backend.Infrastructure.Repositories.Base
             return entity;
         }
 
-        public async Task<T> DeleteAsync(T entity)
+        public async Task DeleteAsync(T entity)
         {
-            EntityEntry<T> mEntity = _tallerContext.Set<T>().Remove(entity);
+            _tallerContext.Set<T>().Remove(entity);
             await _tallerContext.SaveChangesAsync();
-
-            return mEntity.Entity;
         }
 
         public async Task<IEnumerable<T>> GetAllAsync()
