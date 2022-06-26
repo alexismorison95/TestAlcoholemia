@@ -20,7 +20,7 @@ namespace Backend.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetUsuarios()
         {
-            IEnumerable<GetUsuarioDTO> mUsuarioList = await iUsuarioService.GetUsuarios();
+            IEnumerable<UsuarioTipoUsuarioDTO> mUsuarioList = await iUsuarioService.GetUsuarios();
 
             return Ok(mUsuarioList);
         }
@@ -28,17 +28,33 @@ namespace Backend.API.Controllers
         [HttpPost]
         public async Task<IActionResult> InsertUsuario([FromBody] UsuarioDTO pUsuario)
         {
-            UsuarioDTO mUsuario = await iUsuarioService.InsertUsuario(pUsuario);
+            try
+            {
+                UsuarioDTO mUsuario = await iUsuarioService.InsertUsuario(pUsuario);
 
-            return Ok(mUsuario);
+                return Ok(mUsuario);
+            }
+            catch (Exception)
+            {
+                return Problem("Error al insertar usuario", statusCode: 500);
+            }
+            
         }
 
         [HttpPut]
         public async Task<IActionResult> UpdateUsuario([FromBody] UsuarioDTO pUsuario)
         {
-            UsuarioDTO mUsuario = await iUsuarioService.UpdateUsuario(pUsuario);
+            try
+            {
+                UsuarioDTO mUsuario = await iUsuarioService.UpdateUsuario(pUsuario);
 
-            return Ok(mUsuario);
+                return Ok(mUsuario);
+            }
+            catch (Exception)
+            {
+                return Problem("Error al actualizar usuario", statusCode: 500);
+            }
+            
         }
 
         [HttpDelete("{pNombreusuario}")]
@@ -51,7 +67,7 @@ namespace Backend.API.Controllers
                 return Ok(mUsuario);
             }
             
-            return NotFound(new { Response = "Usuario no encontrado" });
+            return NotFound(new { detail = "Usuario no encontrado" });
         }
     }
 }

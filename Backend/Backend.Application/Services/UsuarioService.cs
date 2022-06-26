@@ -31,11 +31,11 @@ namespace Backend.Application.Services
             return null;
         }
 
-        public async Task<IEnumerable<GetUsuarioDTO>> GetUsuarios()
+        public async Task<IEnumerable<UsuarioTipoUsuarioDTO>> GetUsuarios()
         {
             IEnumerable<Usuario> mUsuarioList = await iUsuarioRepository.GetAllUsuarioWithTipousuario();
 
-            return iMapper.Map<IEnumerable<GetUsuarioDTO>>(mUsuarioList);
+            return iMapper.Map<IEnumerable<UsuarioTipoUsuarioDTO>>(mUsuarioList);
         }
 
         public async Task<UsuarioDTO> InsertUsuario(UsuarioDTO pUsuario)
