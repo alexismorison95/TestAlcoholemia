@@ -1,5 +1,6 @@
 ﻿using Backend.Application.DTOs.Usuarios;
 using Backend.Application.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,6 +20,7 @@ namespace Backend.API.Controllers
 
         #region Usuario
         [HttpGet]
+        [Authorize(Roles = "administrador")]
         public async Task<IActionResult> GetUsuarios()
         {
             IEnumerable<UsuarioTipoUsuarioDTO> mUsuarioList = await iUsuarioService.GetUsuarios();
@@ -27,6 +29,7 @@ namespace Backend.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "administrador")]
         public async Task<IActionResult> InsertUsuario([FromBody] UsuarioDTO pUsuario)
         {
             try
@@ -43,6 +46,7 @@ namespace Backend.API.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "administrador")]
         public async Task<IActionResult> UpdateUsuario([FromBody] UsuarioDTO pUsuario)
         {
             try
@@ -59,6 +63,7 @@ namespace Backend.API.Controllers
         }
 
         [HttpDelete("{pNombreusuario}")]
+        [Authorize(Roles = "administrador")]
         public async Task<IActionResult> DeleteUsuario(string pNombreusuario)
         {
             UsuarioDTO? mUsuario = await iUsuarioService.DeleteUsuario(pNombreusuario);
@@ -74,6 +79,7 @@ namespace Backend.API.Controllers
 
         #region TipoUsuario
         [HttpGet]
+        [Authorize(Roles = "administrador")]
         public async Task<IActionResult> GetTipoUsuarios()
         {
             IEnumerable<TipoUsuarioDTO> mTipoUsuarioList = await iUsuarioService.GetTipoUsuario();
@@ -82,6 +88,7 @@ namespace Backend.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "administrador")]
         public async Task<IActionResult> InsertTipoUsuario([FromBody] TipoUsuarioDTO pTipoUsuario)
         {
             try
@@ -98,6 +105,7 @@ namespace Backend.API.Controllers
         }
 
         [HttpDelete("{pId}")]
+        [Authorize(Roles = "administrador")]
         public async Task<IActionResult> DeleteTipoUsuario(int pId)
         {
             TipoUsuarioDTO? mTipoUsuario = await iUsuarioService.DeleteTipoUsuario(pId);

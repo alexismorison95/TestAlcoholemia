@@ -1,0 +1,17 @@
+<div class="container">
+        <div class="login-card">
+            <form [formGroup]="form">
+                <div style="display: flex;flex-direction: column;">
+                    <mat-form-field cdkFocusInitial>
+                        <input matInput type="text" placeholder="Nombre de usuario" formControlName="UserName">
+                    </mat-form-field>
+        
+                    <mat-form-field>
+                        <input matInput type="password" placeholder="Contraseña" formControlName="Password">
+                    </mat-form-field>
+                </div>
+            </form>
+            <br>
+            <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="login()">Iniciar sesión</button>
+        </div>
+</div>

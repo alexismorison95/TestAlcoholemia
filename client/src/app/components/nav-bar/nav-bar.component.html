@@ -2,8 +2,10 @@
     <span>App</span>
     <span class="menu-spacer"></span>
 
-    <button mat-button [routerLink]="[ '/inicio' ]" routerLinkActive="active">Inicio</button>
-    <button mat-button [routerLink]="[ '/usuarios' ]" routerLinkActive="active">Usuarios</button>
+    <button mat-button [routerLink]="[ '/inicio' ]" routerLinkActive="active" *ngIf="loginService.isUserAuthenticated()">Inicio</button>
+    <button mat-button [routerLink]="[ '/usuarios' ]" routerLinkActive="active" *ngIf="loginService.isUserAuthenticated()">Usuarios</button>
     
     <span class="spacer"></span>
+
+    <button mat-button *ngIf="loginService.isUserAuthenticated()" (click)="logOut()">Cerrar sesión</button>
 </mat-toolbar>

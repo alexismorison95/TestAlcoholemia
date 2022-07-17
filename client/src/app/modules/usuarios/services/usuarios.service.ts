@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { GetUsuarioDTO, UsuarioDTO } from '../interfaces/Usuarios';
 import { Tipousuario } from '../interfaces/Tipousuario';
+
+const httpOptions = { 
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +34,7 @@ export class UsuariosService {
    */
   getUsuarios(): Observable<GetUsuarioDTO[]> {
 
-    return this._http.get<GetUsuarioDTO[]>(this.cGET_USUARIOS_URL);
+    return this._http.get<GetUsuarioDTO[]>(this.cGET_USUARIOS_URL, httpOptions);
   }
 
   /**
@@ -40,7 +44,7 @@ export class UsuariosService {
    */
   addUsuario(pUsuario: UsuarioDTO): Observable<UsuarioDTO> {
 
-    return this._http.post<UsuarioDTO>(this.cADD_USUARIO_URL, pUsuario);
+    return this._http.post<UsuarioDTO>(this.cADD_USUARIO_URL, pUsuario, httpOptions);
   }
 
   /**
@@ -50,7 +54,7 @@ export class UsuariosService {
    */
   editUsuario(pUsuario: UsuarioDTO): Observable<UsuarioDTO> {
     
-    return this._http.put<UsuarioDTO>(this.cUPDATE_USUARIO_URL, pUsuario);
+    return this._http.put<UsuarioDTO>(this.cUPDATE_USUARIO_URL, pUsuario, httpOptions);
   }
 
   /**
@@ -60,7 +64,7 @@ export class UsuariosService {
    */
   deleteUsuario(pNombreusuario: string): Observable<UsuarioDTO> {
 
-    return this._http.delete<UsuarioDTO>(this.cDELETE_USUARIO_URL + pNombreusuario);
+    return this._http.delete<UsuarioDTO>(this.cDELETE_USUARIO_URL + pNombreusuario, httpOptions);
   }
 
 
@@ -70,7 +74,7 @@ export class UsuariosService {
    */
   getTipoUsuario(): Observable<Tipousuario[]> {
 
-    return this._http.get<Tipousuario[]>(this.cGET_TIPO_USUARIOS_URL);
+    return this._http.get<Tipousuario[]>(this.cGET_TIPO_USUARIOS_URL, httpOptions);
   }
 
   /**
@@ -80,7 +84,7 @@ export class UsuariosService {
    */
   addTipoUsuario(pTipoUsuario: Tipousuario): Observable<Tipousuario> {
 
-    return this._http.post<Tipousuario>(this.cADD_TIPO_USUARIOS_URL, pTipoUsuario);
+    return this._http.post<Tipousuario>(this.cADD_TIPO_USUARIOS_URL, pTipoUsuario, httpOptions);
   }
 
   /**
@@ -90,6 +94,6 @@ export class UsuariosService {
    */
   deleteTipoUsuario(pId: number): Observable<Tipousuario> {
 
-    return this._http.delete<Tipousuario>(this.cDELETE_TIPO_USUARIOS_URL + pId);
+    return this._http.delete<Tipousuario>(this.cDELETE_TIPO_USUARIOS_URL + pId, httpOptions);
   }
 }
