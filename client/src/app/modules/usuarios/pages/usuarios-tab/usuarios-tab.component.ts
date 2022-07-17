@@ -32,17 +32,7 @@ export class UsuariosTabComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.getTipoUsuarios();
-
     this.getUsuarios();
-  }
-
-  getTipoUsuarios(): void {
-
-    this._usuariosService.getTipoUsuario().subscribe(pResponse => {
-
-      this.iTipousuarioList = pResponse;
-    })
   }
 
   /**
@@ -61,22 +51,28 @@ export class UsuariosTabComponent implements OnInit {
    */
   addUsuario(): void {
 
-    const mAddDialog = this._dialog.open(
-      AddDialogComponent,
-      { width: '400px', data: this.iTipousuarioList }
-    );
+    this._usuariosService.getTipoUsuario().subscribe(pResponse => {
 
-    //despues de cerrar el dialogo
-    mAddDialog.afterClosed().subscribe(pUsuario => {
+      this.iTipousuarioList = pResponse;
 
-      //si cargo correctamente el form
-      if (pUsuario !== undefined) {
+      const mAddDialog = this._dialog.open(
+        AddDialogComponent,
+        { width: '400px', data: this.iTipousuarioList }
+      );
+  
+      //despues de cerrar el dialogo
+      mAddDialog.afterClosed().subscribe(pUsuario => {
+  
+        //si cargo correctamente el form
+        if (pUsuario !== undefined) {
+  
+          this._usuariosService.addUsuario(pUsuario as UsuarioDTO).subscribe(() => {
+  
+            this.getUsuarios();
+          });
+        }
+      });
 
-        this._usuariosService.addUsuario(pUsuario as UsuarioDTO).subscribe(() => {
-
-          this.getUsuarios();
-        });
-      }
     });
   }
 
