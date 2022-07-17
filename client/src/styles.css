@@ -7,3 +7,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     justify-content: center !important;
     padding-left: 18px !important;
 }
+
+.error-snack-bar {
+    background-color: rgb(255, 91, 91);
+    text-align: center;
+}
+
+.ok-snack-bar {
+    background-color: rgb(68, 158, 68);
+    text-align: center;
+}

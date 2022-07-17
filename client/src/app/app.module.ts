@@ -12,6 +12,8 @@ import { MaterialModule } from './shared/modules/material.module';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { InicioComponent } from './components/inicio/inicio.component';
+import { ErrorSnackBarComponent } from './components/error-snack-bar/error-snack-bar.component';
+import { OkSnackBarComponent } from './components/ok-snack-bar/ok-snack-bar.component';
 
 export function tokenGetter() { 
   return localStorage.getItem("jwt"); 
@@ -21,7 +23,9 @@ export function tokenGetter() {
   declarations: [
     AppComponent,
     NavBarComponent,
-    InicioComponent
+    InicioComponent,
+    ErrorSnackBarComponent,
+    OkSnackBarComponent
   ],
   imports: [
     BrowserModule,

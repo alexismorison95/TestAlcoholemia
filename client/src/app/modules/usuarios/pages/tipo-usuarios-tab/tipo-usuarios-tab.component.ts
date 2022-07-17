@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { SnackBarService } from 'src/app/shared/messages/snack-bar.service';
 import { AddDialogComponent } from '../../components/tipo-usuarios/add-dialog/add-dialog.component';
 import { DeleteDialogComponent } from '../../components/tipo-usuarios/delete-dialog/delete-dialog.component';
 import { Tipousuario } from '../../interfaces/Tipousuario';
@@ -19,7 +20,8 @@ export class TipoUsuariosTabComponent implements OnInit {
 
   constructor(
     private _usuariosService: UsuariosService,
-    public _dialog: MatDialog
+    public _dialog: MatDialog,
+    private snackBar: SnackBarService
   ) { }
 
   ngOnInit(): void {
@@ -58,6 +60,8 @@ export class TipoUsuariosTabComponent implements OnInit {
 
         this._usuariosService.addTipoUsuario(mTipoDeUsuario).subscribe(() => {
 
+          this.snackBar.showOkMessage("Tipo de usuario agregado con éxito");
+
           this.getTipoUsuarios();
         });
       }
@@ -82,6 +86,8 @@ export class TipoUsuariosTabComponent implements OnInit {
       if (pDelete !== undefined) {
 
         this._usuariosService.deleteTipoUsuario(pTipoUsuario.id).subscribe(() => {
+
+          this.snackBar.showOkMessage("Tipo de usuario eliminado con éxito");
 
           this.getTipoUsuarios();
         });

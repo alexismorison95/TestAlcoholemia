@@ -1,5 +1,10 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ErrorSnackBarComponent } from 'src/app/components/error-snack-bar/error-snack-bar.component';
+import { OkSnackBarComponent } from 'src/app/components/ok-snack-bar/ok-snack-bar.component';
+import { SnackBarService } from 'src/app/shared/messages/snack-bar.service';
 import { AddDialogComponent } from '../../components/usuarios/add-dialog/add-dialog.component';
 import { DeleteDialogComponent } from '../../components/usuarios/delete-dialog/delete-dialog.component';
 import { EditDialogComponent } from '../../components/usuarios/edit-dialog/edit-dialog.component';
@@ -22,12 +27,13 @@ export class UsuariosTabComponent implements OnInit {
   /**
    * Lista de tipos de usuarios
    */
-  iTipousuarioList: Tipousuario[] = [];
+  //iTipousuarioList: Tipousuario[] = [];
 
 
   constructor(
     private _usuariosService: UsuariosService,
-    public _dialog: MatDialog
+    public _dialog: MatDialog,
+    private snackBar: SnackBarService
   ) { }
 
   ngOnInit(): void {
@@ -53,11 +59,9 @@ export class UsuariosTabComponent implements OnInit {
 
     this._usuariosService.getTipoUsuario().subscribe(pResponse => {
 
-      this.iTipousuarioList = pResponse;
-
       const mAddDialog = this._dialog.open(
         AddDialogComponent,
-        { width: '400px', data: this.iTipousuarioList }
+        { width: '400px', data: pResponse}
       );
   
       //despues de cerrar el dialogo
@@ -67,8 +71,17 @@ export class UsuariosTabComponent implements OnInit {
         if (pUsuario !== undefined) {
   
           this._usuariosService.addUsuario(pUsuario as UsuarioDTO).subscribe(() => {
+
+            this.snackBar.showOkMessage("Usuario agregado con éxito");
   
             this.getUsuarios();
+          },
+          (error: HttpErrorResponse) => {
+
+            console.log(error);
+            
+            if (error.status == 500) { this.snackBar.showErrorMessage("Error al insertar usuario"); } 
+            else { this.snackBar.showErrorMessage("Error inesperado"); }
           });
         }
       });
@@ -82,22 +95,27 @@ export class UsuariosTabComponent implements OnInit {
    */
   editUsuario(pUsuario: GetUsuarioDTO): void {
 
-    const mEditDialog = this._dialog.open(
-      EditDialogComponent,
-      { width: '400px', data: { usuario: pUsuario, tipousuario: this.iTipousuarioList } }
-    );
+    this._usuariosService.getTipoUsuario().subscribe(pResponse => {
 
-    //despues de cerrar el dialogo
-    mEditDialog.afterClosed().subscribe(pUsuario => {
+      const mEditDialog = this._dialog.open(
+        EditDialogComponent,
+        { width: '400px', data: { usuario: pUsuario, tipousuario: pResponse } }
+      );
 
-      //si cargo correctamente el form
-      if (pUsuario !== undefined) {
+      //despues de cerrar el dialogo
+      mEditDialog.afterClosed().subscribe(pUsuario => {
 
-        this._usuariosService.editUsuario(pUsuario as UsuarioDTO).subscribe(() => {
+        //si cargo correctamente el form
+        if (pUsuario !== undefined) {
 
-          this.getUsuarios();
-        });
-      }
+          this._usuariosService.editUsuario(pUsuario as UsuarioDTO).subscribe(() => {
+
+            this.snackBar.showOkMessage("Usuario actualizado con éxito");
+
+            this.getUsuarios();
+          });
+        }
+      });
     });
   }
 
@@ -119,6 +137,8 @@ export class UsuariosTabComponent implements OnInit {
       if (pDelete !== undefined) {
 
         this._usuariosService.deleteUsuario(pNombreusuario).subscribe(() => {
+
+          this.snackBar.showOkMessage("Usuario eliminado con éxito");
 
           this.getUsuarios();
         });
