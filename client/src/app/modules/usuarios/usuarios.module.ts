@@ -11,7 +11,9 @@ import { UsuariosComponent } from './usuarios.component';
 import { TableComponent } from './components/usuarios/table/table.component';
 import { TableComponent as TipousuarioTableComponent } from './components/tipo-usuarios/table/table.component';
 import { DeleteDialogComponent } from './components/usuarios/delete-dialog/delete-dialog.component';
+import { DeleteDialogComponent as DeleteDialogTipoUsuarioComponent } from './components/tipo-usuarios/delete-dialog/delete-dialog.component';
 import { AddDialogComponent } from './components/usuarios/add-dialog/add-dialog.component';
+import { AddDialogComponent as AddDialogTipoUsuarioComponent } from './components/tipo-usuarios/add-dialog/add-dialog.component';
 import { EditDialogComponent } from './components/usuarios/edit-dialog/edit-dialog.component';
 import { UsuariosTabComponent } from './pages/usuarios-tab/usuarios-tab.component';
 import { TipoUsuariosTabComponent } from './pages/tipo-usuarios-tab/tipo-usuarios-tab.component';
@@ -26,7 +28,9 @@ import { TipoUsuariosTabComponent } from './pages/tipo-usuarios-tab/tipo-usuario
     EditDialogComponent,
     UsuariosTabComponent,
     TipoUsuariosTabComponent,
-    TipousuarioTableComponent
+    TipousuarioTableComponent,
+    AddDialogTipoUsuarioComponent,
+    DeleteDialogTipoUsuarioComponent
   ],
   imports: [
     CommonModule,

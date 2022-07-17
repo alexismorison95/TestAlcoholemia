@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -13,6 +13,10 @@ export class TableComponent implements OnInit, AfterViewInit, OnChanges {
 
   //inputs
   @Input() pTipoUsuarios: Tipousuario[] = [];
+
+  //outputs
+  @Output() addTipoUsuarioEvent = new EventEmitter();
+  @Output() deleteTipoUsuarioEvent = new EventEmitter<Tipousuario>();
 
   //tabla
   displayedColumns: string[] = ['tipo', 'actions'];
@@ -56,4 +60,20 @@ export class TableComponent implements OnInit, AfterViewInit, OnChanges {
     }
   }
 
+  /**
+   * Genera el evento agregar tipo de usuario
+   */
+  addTipoUsuario(): void {
+
+    this.addTipoUsuarioEvent.emit();
+  }
+
+  /**
+   * Genera el evento de eliminar tipo de usuario
+   * @param pRow tipo de usuario que se quiere eliminar
+   */
+  deleteTipoUsuario(pRow: Tipousuario): void {
+    
+    this.deleteTipoUsuarioEvent.emit(pRow);
+  }
 }

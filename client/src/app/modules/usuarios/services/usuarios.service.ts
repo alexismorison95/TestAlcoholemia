@@ -18,6 +18,8 @@ export class UsuariosService {
   private readonly cDELETE_USUARIO_URL = `${environment.apiUrl}/Usuario/DeleteUsuario/`;
 
   private readonly cGET_TIPO_USUARIOS_URL = `${environment.apiUrl}/Usuario/GetTipoUsuarios`;
+  private readonly cADD_TIPO_USUARIOS_URL = `${environment.apiUrl}/Usuario/InsertTipoUsuario`;
+  private readonly cDELETE_TIPO_USUARIOS_URL = `${environment.apiUrl}/Usuario/DeleteTipoUsuario/`;
 
   
   constructor(private _http: HttpClient) { }
@@ -69,5 +71,25 @@ export class UsuariosService {
   getTipoUsuario(): Observable<Tipousuario[]> {
 
     return this._http.get<Tipousuario[]>(this.cGET_TIPO_USUARIOS_URL);
+  }
+
+  /**
+   * Agrega un nuevo tipo usuario desde la API
+   * @param pUsuario tipo de usuario a agregar
+   * @returns Tipousuario
+   */
+  addTipoUsuario(pTipoUsuario: Tipousuario): Observable<Tipousuario> {
+
+    return this._http.post<Tipousuario>(this.cADD_TIPO_USUARIOS_URL, pTipoUsuario);
+  }
+
+  /**
+   * Elimina un tipo de usuario desde la API
+   * @param pId clave unica del tipo usuario a eliminar
+   * @returns Tipousuario
+   */
+  deleteTipoUsuario(pId: number): Observable<Tipousuario> {
+
+    return this._http.delete<Tipousuario>(this.cDELETE_TIPO_USUARIOS_URL + pId);
   }
 }

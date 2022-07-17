@@ -1,5 +1,7 @@
 <div class="container">
     <tipo-usuarios-table 
-        [pTipoUsuarios]="iTipoUsuariosList">
+        [pTipoUsuarios]="iTipoUsuariosList"
+        (addTipoUsuarioEvent)="addTipoUsuario()"
+        (deleteTipoUsuarioEvent)="deleteTipoUsuario($event)">
     </tipo-usuarios-table>
 </div>
