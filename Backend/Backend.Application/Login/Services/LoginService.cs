@@ -1,11 +1,10 @@
 ﻿using AutoMapper;
-using Backend.Application.DTOs.Login;
-using Backend.Application.DTOs.Usuarios;
-using Backend.Application.Interfaces;
+using Backend.Application.Login.DTOs;
+using Backend.Application.Login.Interfaces;
 using Backend.Core.Entities;
 using Backend.Core.Repositories;
 
-namespace Backend.Application.Services
+namespace Backend.Application.Login.Services
 {
     public class LoginService : ILoginService
     {
@@ -20,6 +19,11 @@ namespace Backend.Application.Services
             iMapper = pMapper;
             iUsuarioRepository = pUsuarioRepository;
             iTipoUsuarioRepository = pTipoUsuarioRepository;
+        }
+
+        public Task<Usuario> GetLoginUser(string pUserName)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<Usuario?> UserExists(LoginDTO pLoginDTO)

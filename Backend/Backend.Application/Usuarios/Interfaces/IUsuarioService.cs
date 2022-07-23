@@ -1,10 +1,11 @@
-﻿using Backend.Application.DTOs.Usuarios;
+﻿using Backend.Application.Usuarios.DTOs;
 using Backend.Core.Entities;
 
 namespace Backend.Application.Interfaces
 {
     public interface IUsuarioService
     {
+        //usuarios
         Task<IEnumerable<UsuarioTipoUsuarioDTO>> GetUsuarios();
         Task<UsuarioDTO> InsertUsuario(UsuarioDTO pUsuario);
         Task<UsuarioDTO> UpdateUsuario(UsuarioDTO pUsuario);

@@ -1,5 +1,4 @@
-﻿
-namespace Backend.Application.DTOs.Usuarios
+﻿namespace Backend.Application.Usuarios.DTOs
 {
     public class UsuarioTipoUsuarioDTO : UsuarioDTO
     {

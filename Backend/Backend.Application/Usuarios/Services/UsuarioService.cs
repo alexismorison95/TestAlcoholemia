@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Backend.Application.DTOs.Usuarios;
 using Backend.Application.Interfaces;
+using Backend.Application.Usuarios.DTOs;
 using Backend.Core.Entities;
 using Backend.Core.Repositories;
 

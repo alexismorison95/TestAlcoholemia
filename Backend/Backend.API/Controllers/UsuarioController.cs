@@ -1,5 +1,5 @@
-﻿using Backend.Application.DTOs.Usuarios;
-using Backend.Application.Interfaces;
+﻿using Backend.Application.Interfaces;
+using Backend.Application.Usuarios.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;

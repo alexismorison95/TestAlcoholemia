@@ -1,5 +1,4 @@
-﻿
-namespace Backend.Application.DTOs.Login
+﻿namespace Backend.Application.Login.DTOs
 {
     public class AuthenticationDTO
     {

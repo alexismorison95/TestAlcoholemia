@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Backend.Application.DTOs.Usuarios;
+using Backend.Application.Usuarios.DTOs;
 using Backend.Core.Entities;
 
 namespace Backend.Application.Mappers

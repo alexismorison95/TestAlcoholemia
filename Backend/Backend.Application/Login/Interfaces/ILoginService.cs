@@ -1,8 +1,7 @@
-﻿
-using Backend.Application.DTOs.Login;
+﻿using Backend.Application.Login.DTOs;
 using Backend.Core.Entities;
 
-namespace Backend.Application.Interfaces
+namespace Backend.Application.Login.Interfaces
 {
     public interface ILoginService
     {
@@ -12,5 +11,12 @@ namespace Backend.Application.Interfaces
         /// <param name="pLoginDTO">Usuario que desea iniciar sesión</param>
         /// <returns></returns>
         Task<Usuario?> UserExists(LoginDTO pLoginDTO);
+
+        /// <summary>
+        /// Obtiene los datos del usuario logueado en el sistema
+        /// </summary>
+        /// <param name="pUserName"></param>
+        /// <returns></returns>
+        Task<Usuario> GetLoginUser(string pUserName);
     }
 }
