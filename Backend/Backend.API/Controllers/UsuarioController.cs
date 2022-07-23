@@ -86,37 +86,6 @@ namespace Backend.API.Controllers
 
             return Ok(mTipoUsuarioList);
         }
-
-        [HttpPost]
-        [Authorize(Roles = "administrador")]
-        public async Task<IActionResult> InsertTipoUsuario([FromBody] TipoUsuarioDTO pTipoUsuario)
-        {
-            try
-            {
-                TipoUsuarioDTO mTipoUsuario = await iUsuarioService.InsertTipoUsuario(pTipoUsuario);
-
-                return Ok(mTipoUsuario);
-            }
-            catch (Exception)
-            {
-                return Problem("Error al insertar TipoUsuario", statusCode: 500);
-            }
-
-        }
-
-        [HttpDelete("{pId}")]
-        [Authorize(Roles = "administrador")]
-        public async Task<IActionResult> DeleteTipoUsuario(int pId)
-        {
-            TipoUsuarioDTO? mTipoUsuario = await iUsuarioService.DeleteTipoUsuario(pId);
-
-            if (mTipoUsuario != null)
-            {
-                return Ok(mTipoUsuario);
-            }
-
-            return NotFound(new { detail = "TipoUsuario no encontrado" });
-        }
         #endregion
     }
 }

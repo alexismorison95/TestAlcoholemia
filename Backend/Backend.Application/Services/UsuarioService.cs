@@ -65,27 +65,6 @@ namespace Backend.Application.Services
 
             return iMapper.Map<IEnumerable<TipoUsuarioDTO>>(mTipoUsuarioList);
         }
-
-        public async Task<TipoUsuarioDTO> InsertTipoUsuario(TipoUsuarioDTO pTipoUsuario)
-        {
-            Tipousuario mTipoUsuario = await iTipoUsuarioRepository.AddAsync(iMapper.Map<Tipousuario>(pTipoUsuario));
-
-            return iMapper.Map<TipoUsuarioDTO>(mTipoUsuario);
-        }
-
-        public async Task<TipoUsuarioDTO?> DeleteTipoUsuario(int pId)
-        {
-            Tipousuario? mTipoUsuario = await iTipoUsuarioRepository.GetByIdAsync(pId);
-
-            if (mTipoUsuario != null)
-            {
-                await iTipoUsuarioRepository.DeleteAsync(mTipoUsuario);
-
-                return iMapper.Map<TipoUsuarioDTO>(mTipoUsuario);
-            }
-
-            return null;
-        }
         #endregion
     }
 }

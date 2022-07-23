@@ -12,7 +12,5 @@ namespace Backend.Application.Interfaces
 
         //tipo de usuario
         Task<IEnumerable<TipoUsuarioDTO>> GetTipoUsuario();
-        Task<TipoUsuarioDTO> InsertTipoUsuario(TipoUsuarioDTO pTipoUsuario);
-        Task<TipoUsuarioDTO?> DeleteTipoUsuario(int pId);
     }
 }
