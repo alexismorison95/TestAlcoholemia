@@ -12,14 +12,18 @@ namespace Backend.Infrastructure.Repositories
         {
         }
 
-        public async Task<IEnumerable<Usuario>> GetAllUsuarioWithTipousuario()
+        public async Task<IEnumerable<Usuario>> GetAllUsuarioExtended()
         {
-            return await _tallerContext.Usuarios.Include(x => x.Tipousuario).ToListAsync();
+            return await _tallerContext.Usuarios
+                .Include(x => x.Tipousuario)
+                .ToListAsync();
         }
 
         public async Task<Usuario?> GetUsuarioByNombreUsuario(string pNombreusuario)
         {
-            return await _tallerContext.Usuarios.Where(x => x.Nombreusuario == pNombreusuario).FirstOrDefaultAsync();
+            return await _tallerContext.Usuarios
+                .Where(x => x.Nombreusuario == pNombreusuario)
+                .FirstOrDefaultAsync();
         }
     }
 }

@@ -6,7 +6,8 @@ namespace Backend.Application.Interfaces
     public interface IUsuarioService
     {
         //usuarios
-        Task<IEnumerable<UsuarioTipoUsuarioDTO>> GetUsuarios();
+        Task<IEnumerable<UsuarioDTO>> GetUsuarios();
+        Task<IEnumerable<UsuarioExtendedDTO>> GetUsuariosExtended();
         Task<UsuarioDTO> InsertUsuario(UsuarioDTO pUsuario);
         Task<UsuarioDTO> UpdateUsuario(UsuarioDTO pUsuario);
         Task<UsuarioDTO?> DeleteUsuario(string pNombreusuario);

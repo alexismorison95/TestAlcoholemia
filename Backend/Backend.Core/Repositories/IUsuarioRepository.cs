@@ -5,7 +5,7 @@ namespace Backend.Core.Repositories
 {
     public interface IUsuarioRepository : IRepository<Usuario>
     {
-        Task<IEnumerable<Usuario>> GetAllUsuarioWithTipousuario();
+        Task<IEnumerable<Usuario>> GetAllUsuarioExtended();
         Task<Usuario?> GetUsuarioByNombreUsuario(string pNombreusuario);
     }
 }

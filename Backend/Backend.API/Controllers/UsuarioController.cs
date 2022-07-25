@@ -23,7 +23,16 @@ namespace Backend.API.Controllers
         [Authorize(Roles = "administrador")]
         public async Task<IActionResult> GetUsuarios()
         {
-            IEnumerable<UsuarioTipoUsuarioDTO> mUsuarioList = await iUsuarioService.GetUsuarios();
+            IEnumerable<UsuarioDTO> mUsuarioList = await iUsuarioService.GetUsuarios();
+
+            return Ok(mUsuarioList);
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "administrador")]
+        public async Task<IActionResult> GetUsuariosExtended()
+        {
+            IEnumerable<UsuarioExtendedDTO> mUsuarioList = await iUsuarioService.GetUsuariosExtended();
 
             return Ok(mUsuarioList);
         }

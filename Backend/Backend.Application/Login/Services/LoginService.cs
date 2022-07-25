@@ -28,7 +28,7 @@ namespace Backend.Application.Login.Services
 
         public async Task<Usuario?> UserExists(LoginDTO pLoginDTO)
         {
-            IEnumerable<Usuario> mList = await iUsuarioRepository.GetAllUsuarioWithTipousuario();
+            IEnumerable<Usuario> mList = await iUsuarioRepository.GetAllUsuarioExtended();
 
             Usuario? mUsuario = mList.Where(x => x.Nombreusuario == pLoginDTO.UserName && x.Contrasenia == pLoginDTO.Password).FirstOrDefault();
 

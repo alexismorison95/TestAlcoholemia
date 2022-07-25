@@ -36,11 +36,18 @@ namespace Backend.Application.Services
             return null;
         }
 
-        public async Task<IEnumerable<UsuarioTipoUsuarioDTO>> GetUsuarios()
+        public async Task<IEnumerable<UsuarioDTO>> GetUsuarios()
         {
-            IEnumerable<Usuario> mUsuarioList = await iUsuarioRepository.GetAllUsuarioWithTipousuario();
+            IEnumerable<Usuario> mUsuarioList = await iUsuarioRepository.GetAllAsync();
 
-            return iMapper.Map<IEnumerable<UsuarioTipoUsuarioDTO>>(mUsuarioList);
+            return iMapper.Map<IEnumerable<UsuarioDTO>>(mUsuarioList);
+        }
+
+        public async Task<IEnumerable<UsuarioExtendedDTO>> GetUsuariosExtended()
+        {
+            IEnumerable<Usuario> mUsuarioList = await iUsuarioRepository.GetAllUsuarioExtended();
+
+            return iMapper.Map<IEnumerable<UsuarioExtendedDTO>>(mUsuarioList);
         }
 
         public async Task<UsuarioDTO> InsertUsuario(UsuarioDTO pUsuario)

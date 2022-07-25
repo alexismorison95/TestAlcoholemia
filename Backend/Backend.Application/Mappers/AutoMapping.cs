@@ -10,10 +10,11 @@ namespace Backend.Application.Mappers
         public AutoMapping()
         {
             CreateMap<Usuario, UsuarioDTO>().ReverseMap();
-            CreateMap<Usuario, UsuarioTipoUsuarioDTO>()
+            CreateMap<Usuario, UsuarioExtendedDTO>()
                 .ForMember(dest => dest.Tipousuario, opt => opt.MapFrom(src => src.Tipousuario!.Tipo));
             CreateMap<Tipousuario, TipoUsuarioDTO>().ReverseMap();
             CreateMap<Equipo, EquipoDTO>().ReverseMap();
+            CreateMap<Equipo, EquipoExtendedDTO>().ReverseMap();
         }
     }
 }
