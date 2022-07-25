@@ -1,3 +1,5 @@
+using Backend.Application.Equipos.Interfaces;
+using Backend.Application.Equipos.Services;
 using Backend.Application.Interfaces;
 using Backend.Application.Login.Interfaces;
 using Backend.Application.Login.Services;
@@ -43,10 +45,12 @@ builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 //repos
 builder.Services.AddTransient<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddTransient<ITipousuarioRepository, TipousuarioRepository>();
+builder.Services.AddTransient<IEquipoRepository, EquipoRepository>();
 
 //servicios
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<ILoginService, LoginService>();
+builder.Services.AddScoped<IEquipoService, EquipoService>();
 
 //JWT
 builder.Services.AddAuthentication(opt =>
